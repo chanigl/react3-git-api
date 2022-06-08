@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "./components/search/Search";
 import Button from "./components/button/Button";
-import Print from "./components/print/Print";
+//import Print from "./components/print/Print";
 
 function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
-  //const [users, setUsers] = useState([])
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([{}]);
   const [isSearch, setIsSearch] = useState(false);
+  const [users, setUsers] = useState([])
 
   console.log(user);
 
@@ -21,8 +21,7 @@ function App() {
         if (searchUser === "") return;
         const { data } = await axios.get(gitHubApiUrl);
         const { avatar_url, created_at, login, public_repos } = data;
-        setUser({ avatar_url, created_at, login, public_repos });
-        //setUsers(user)
+        setUser([...user,{ avatar_url, created_at, login, public_repos }]);
         //console.log(avatar_url, created_at, login, public_repos);
       }
       fethData();
@@ -37,6 +36,7 @@ function App() {
         <Button
         user={user}
         isSearch={isSearch}
+        //setUsers={setUsers}
           text={"Search"}
           clickEvent={() => {
             console.log("Search");
@@ -49,9 +49,6 @@ function App() {
           clickEvent={() => console.log("Reset")}
           setSearchUser={setSearchUser}
         />
-      </div>
-      <div>
-        
       </div>
     </>
   );
