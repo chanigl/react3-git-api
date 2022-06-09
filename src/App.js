@@ -8,7 +8,7 @@ import Button from "./components/button/Button";
 function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
-  const [user, setUser] = useState([{}]);
+  const [user, setUser] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
   const [users, setUsers] = useState([])
 
