@@ -1,0 +1,10 @@
+.buttonsearch{
+    position: fixed;
+    top: 0;
+    right: 20px;
+}
+.buttonreset{
+    position: fixed;
+    top: 0;
+    right: 0;
+}
