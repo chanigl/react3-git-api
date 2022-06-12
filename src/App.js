@@ -4,21 +4,32 @@ import axios from "axios";
 import Search from "./components/search/Search";
 import Button from "./components/button/Button";
 import Print from "./components/print/Print";
-//import Print from "./components/print/Print";
+import Select from "./components/select/Select";
 
 function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
-  const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]);
 
   console.log(user);
 
-  function sortFunction(a, b) {
+  function sortDate(a, b) {
     var dateA = new Date(a.created_at).getTime();
     var dateB = new Date(b.created_at).getTime();
     return dateA > dateB ? 1 : -1;
+  }
+
+  function sortName(a, b) {
+    var textA = a.login.toUpperCase();
+    var textB = b.login.toUpperCase();
+    return textA < textB ? -1 : textA > textB ? 1 : 0;
+  }
+  function sortRepo(a, b) {
+    var repoa = a.public_repos;
+    var repob = b.public_repos;
+    return repoa < repob ? 1 : -1;
   }
 
   useEffect(() => {
@@ -43,7 +54,6 @@ function App() {
           className="buttonsearch"
           user={user}
           isSearch={isSearch}
-          //setUsers={setUsers}
           text={"Search"}
           clickEvent={() => {
             console.log("Search");
@@ -60,16 +70,25 @@ function App() {
           }}
           setSearchUser={setSearchUser}
         />
-        <Button
-          text={"sortDate"}
-          clickEvent={(e) => {
-            console.log(isSearch);
-            console.log("sort");
-            user.sort(sortFunction);
-            setSearchUser(" ");
-            setUser(user);
-
-            console.log(user);
+        <Select
+          sortby={(e) => {
+            const select = e.target.value;
+            console.log(select);
+            if (e.target.value === "date") {
+              user.sort(sortDate);
+              setSearchUser(" ");
+              setUser(user);
+            }
+            if (e.target.value === "name") {
+              user.sort(sortName);
+              setSearchUser(" ");
+              setUser(user);
+            }
+            if (e.target.value === "repo") {
+              user.sort(sortRepo);
+              setSearchUser(" ");
+              setUser(user);
+            }
           }}
         />
       </div>
