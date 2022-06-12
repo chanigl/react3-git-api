@@ -2,7 +2,7 @@ import React  from "react";
 import Print from "../print/Print";
 import './button.css'
 
-const Button = ({ text, clickEvent ,user,isSearch,setIsSearch}) => {
+const Button = ({ text, clickEvent ,user,isSearch}) => {
 
   return (
     <>

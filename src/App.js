@@ -15,11 +15,11 @@ function App() {
 
   console.log(user);
 
-  function sortFunction(a,b){  
+  function sortFunction(a, b) {
     var dateA = new Date(a.created_at).getTime();
     var dateB = new Date(b.created_at).getTime();
-    return dateA > dateB ? 1 : -1;  
-}; 
+    return dateA > dateB ? 1 : -1;
+  }
 
   useEffect(() => {
     try {
@@ -65,27 +65,12 @@ function App() {
           clickEvent={(e) => {
             console.log(isSearch);
             console.log("sort");
-            user.sort(sortFunction) 
-            setUser(user)
-            console.log(isSearch);
-           user.map(el=>
-            <Print 
-            
-              avatar={el.avatar_url}
-              login={el.login}
-              create={el.created_at}
-              repo={el.public_repos}
-              deleteClick={(e)=>{console.log(e.target)
-                e.target.parentElement.remove()
-                //console.log(user);
-              }
-              }
-              />
-               )      
-          
-console.log(user);
+            user.sort(sortFunction);
+            setSearchUser(" ");
+            setUser(user);
+
+            console.log(user);
           }}
-          
         />
       </div>
     </>
