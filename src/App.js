@@ -72,23 +72,11 @@ function App() {
         />
         <Select
           sortby={(e) => {
-            const select = e.target.value;
-            console.log(select);
-            if (e.target.value === "date") {
-              user.sort(sortDate);
-              setSearchUser(" ");
-              setUser(user);
-            }
-            if (e.target.value === "name") {
-              user.sort(sortName);
-              setSearchUser(" ");
-              setUser(user);
-            }
-            if (e.target.value === "repo") {
-              user.sort(sortRepo);
-              setSearchUser(" ");
-              setUser(user);
-            }
+          if (e.target.value === "date") {user.sort(sortDate)} 
+          if (e.target.value === "name") {user.sort(sortName)}
+          if (e.target.value === "repo") {user.sort(sortRepo)}
+            setSearchUser(" ");
+            setUser(user);
           }}
         />
       </div>

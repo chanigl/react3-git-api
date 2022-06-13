@@ -1,5 +1,4 @@
 import React from "react";
-//import Print from "../print/Print";
 
 const Search = ({ setGitUser, gitUser, user }) => {
   return (

@@ -3,7 +3,6 @@ import React from 'react'
 const Select = ({sortby}) => {
   return (
     <form>
-        
         <select name='sort' onChange={sortby}>
             <option selected disabled>sort by:</option>
             <option value="date">date</option>
