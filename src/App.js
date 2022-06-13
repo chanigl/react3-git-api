@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Search from "./components/search/Search";
 import Button from "./components/button/Button";
@@ -10,8 +10,8 @@ function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState([]);
-  const [isSearch, setIsSearch] = useState(false);
-  //const [users, setUsers] = useState([]);
+  //const [isSearch, setIsSearch] = useState(false);
+  const [users, setUsers] = useState([]);
 
   console.log(user);
 
@@ -35,6 +35,7 @@ function App() {
   useEffect(() => {
     try {
       async function fethData() {
+        
         const gitHubApiUrl = `https://api.github.com/users/${searchUser}`;
         if (searchUser === "") return;
         const { data } = await axios.get(gitHubApiUrl);
@@ -51,18 +52,16 @@ function App() {
       <div className="App">
         <Search setGitUser={setGitUser} searchUser={searchUser} />
         <Button
-          className="buttonsearch"
           user={user}
-          isSearch={isSearch}
+          //isSearch={isSearch}
           text={"Search"}
           clickEvent={() => {
             console.log("Search");
             setSearchUser(gitUser);
-            setIsSearch(true);
+            //setIsSearch(true);
           }}
         />
         <Button
-          className="buttonreset"
           text={"Reset"}
           clickEvent={() => {
             console.log("Reset");
@@ -72,13 +71,39 @@ function App() {
         />
         <Select
           sortby={(e) => {
-          if (e.target.value === "date") {user.sort(sortDate)} 
-          if (e.target.value === "name") {user.sort(sortName)}
-          if (e.target.value === "repo") {user.sort(sortRepo)}
+            if (e.target.value === "date") {
+              user.sort(sortDate);
+            }
+            if (e.target.value === "name") {
+              user.sort(sortName);
+            }
+            if (e.target.value === "repo") {
+              user.sort(sortRepo);
+            }
             setSearchUser(" ");
             setUser(user);
           }}
         />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            margin: "10px",
+            justifyContent: "space-around",
+          }}
+        >
+          
+          {user.map((el,i) => (
+            <Print  
+              avatar={el.avatar_url}
+              login={el.login}
+              create={el.created_at}
+              repo={el.public_repos}
+              deleteClick={(e)=>{setUser(user.filter((el)=>{return !users}))}}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

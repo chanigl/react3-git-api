@@ -1,7 +1,7 @@
 import React from "react";
 import './Print.css';
 
-const Print = ({ avatar, login, create, repo, deleteClick ,user}) => {
+const Print = ({ avatar, login, create, repo, deleteClick}) => {
   return (
     <>
       <div className="user">
