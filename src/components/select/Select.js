@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Select = ({sortby}) => {
+
+const Select = ({sortby,user}) => {
+  console.log('uull'+user)
   return (
     <form>
         <select name='sort' onChange={sortby}>

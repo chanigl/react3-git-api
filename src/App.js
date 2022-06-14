@@ -10,8 +10,6 @@ function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState([]);
-  //const [isSearch, setIsSearch] = useState(false);
-  const [users, setUsers] = useState([]);
 
   console.log(user);
 
@@ -57,12 +55,10 @@ function App() {
         <Search setGitUser={setGitUser} searchUser={searchUser} />
         <Button
           user={user}
-          //isSearch={isSearch}
           text={"Search"}
           clickEvent={() => {
             console.log("Search");
             setSearchUser(gitUser);
-            //setIsSearch(true);
           }}
         />
         <Button
@@ -73,10 +69,14 @@ function App() {
           }}
           setSearchUser={setSearchUser}
         />
-        <Select
+        
+        <Select 
+        
           sortby={(e) => {
-            if (e.target.value === "date") {
+            
+            if (e.target.value === "date") { 
               user.sort(sortDate);
+              console.log(user);
             }
             if (e.target.value === "name") {
               user.sort(sortName);
@@ -84,8 +84,11 @@ function App() {
             if (e.target.value === "repo") {
               user.sort(sortRepo);
             }
-            // setSearchUser(" ");
-            setUser(user);
+           // setSearchUser(" ");
+            setUser(user)
+            
+            
+            console.log('uu'+ user);
           }}
         />
         <div
@@ -99,24 +102,15 @@ function App() {
         >
           {user.map((el, i) => (
             <Print
-              id={el.i}
+            user={user}
+            setUser={setUser}
+              key={el.i}
               avatar={el.avatar_url}
               login={el.login}
               create={el.created_at}
               repo={el.public_repos}
-              deleteClick={(e) => {
-                setUser(
-                  user.filter((cur) => {
-                    const logiName = e.target.parentElement.children[2].innerText
-                    console.log(logiName);
-                    console.log(cur.login);
-                    return (console.log(cur.login)
-                      // logiName != cur.login
-                    );
-                  })
-                );
-              }}
-              //deleteClick={(e)=>console.log(i)}
+             
+             
             />
           ))}
         </div>
