@@ -10,6 +10,7 @@ function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState([]);
+  const [users,setUsers]=useState()
 
   console.log(user);
 
@@ -47,7 +48,7 @@ function App() {
 
   useEffect(() => {
     console.log("user:", user);
-  }, [user]);
+  }, [users]);
 
   return (
     <>
@@ -86,6 +87,7 @@ function App() {
             }
            // setSearchUser(" ");
             setUser(user)
+            setusers(JSON.stringify(user))
             
             
             console.log('uu'+ user);
