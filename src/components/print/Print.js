@@ -13,6 +13,7 @@ const Print = ({ avatar, login, create, repo, deleteClick}) => {
         <div className="create"><span>created at:  </span>{create.split('T')[0]}</div>
         <div className="repo">{repo}<p>repositorios</p></div>
       </div>
+      
     </>
   );
 };

@@ -41,12 +41,18 @@ function App() {
         const { data } = await axios.get(gitHubApiUrl);
         const { avatar_url, created_at, login, public_repos } = data;
         setUser([...user, { avatar_url, created_at, login, public_repos }]);
+        
       }
       fethData();
     } catch (e) {
       console.log(e);
     }
   }, [searchUser]);
+
+  useEffect(()=>{
+    console.log('user:' , user);
+  },[user])
+
   return (
     <>
       <div className="App">
@@ -80,7 +86,7 @@ function App() {
             if (e.target.value === "repo") {
               user.sort(sortRepo);
             }
-            setSearchUser(" ");
+           // setSearchUser(" ");
             setUser(user);
           }}
         />
@@ -95,13 +101,15 @@ function App() {
         >
           
           {user.map((el,i) => (
-            <Print  
+            <Print  id={el.i} 
               avatar={el.avatar_url}
               login={el.login}
               create={el.created_at}
               repo={el.public_repos}
-              deleteClick={(e)=>{setUser(user.filter((el)=>{return !users}))}}
-            />
+              //deleteClick={(e)=>{ setUser(user.filter((el)=>{return console.log(el.i);  }))}}
+              deleteClick={(e)=>console.log(el.i)}
+
+            /> 
           ))}
         </div>
       </div>
