@@ -35,13 +35,11 @@ function App() {
   useEffect(() => {
     try {
       async function fethData() {
-        
         const gitHubApiUrl = `https://api.github.com/users/${searchUser}`;
         if (searchUser === "") return;
         const { data } = await axios.get(gitHubApiUrl);
         const { avatar_url, created_at, login, public_repos } = data;
         setUser([...user, { avatar_url, created_at, login, public_repos }]);
-        
       }
       fethData();
     } catch (e) {
@@ -49,9 +47,9 @@ function App() {
     }
   }, [searchUser]);
 
-  useEffect(()=>{
-    console.log('user:' , user);
-  },[user])
+  useEffect(() => {
+    console.log("user:", user);
+  }, [user]);
 
   return (
     <>
@@ -86,7 +84,7 @@ function App() {
             if (e.target.value === "repo") {
               user.sort(sortRepo);
             }
-           // setSearchUser(" ");
+            // setSearchUser(" ");
             setUser(user);
           }}
         />
@@ -99,17 +97,27 @@ function App() {
             justifyContent: "space-around",
           }}
         >
-          
-          {user.map((el,i) => (
-            <Print  id={el.i} 
+          {user.map((el, i) => (
+            <Print
+              id={el.i}
               avatar={el.avatar_url}
               login={el.login}
               create={el.created_at}
               repo={el.public_repos}
-              //deleteClick={(e)=>{ setUser(user.filter((el)=>{return console.log(el.i);  }))}}
-              deleteClick={(e)=>console.log(el.i)}
-
-            /> 
+              deleteClick={(e) => {
+                setUser(
+                  user.filter((cur) => {
+                    const logiName = e.target.parentElement.children[2].innerText
+                    console.log(logiName);
+                    console.log(cur.login);
+                    return (console.log(cur.login)
+                      // logiName != cur.login
+                    );
+                  })
+                );
+              }}
+              //deleteClick={(e)=>console.log(i)}
+            />
           ))}
         </div>
       </div>
