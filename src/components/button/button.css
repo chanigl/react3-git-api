@@ -1,8 +1,12 @@
-.users{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 10px;
-    justify-content: space-around;
-
+.button{
+    margin: 50px;
+    height: 50px;
+    width: 100px;
+    background-color: green;
+    font-size: x-large;
+}
+.del{
+    margin-top: 5px;
+    margin-left: 75%;
+    width: 20%;
 }

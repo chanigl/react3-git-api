@@ -1,11 +1,10 @@
 import React from 'react'
-
+import './Select.css'
 
 const Select = ({sortby,user}) => {
-  console.log('uull'+user)
   return (
     <form>
-        <select name='sort' onChange={sortby}>
+        <select className='sort' name='sort' onChange={sortby}>
             <option selected disabled>sort by:</option>
             <option value="date">date</option>
             <option value="name">name</option>

@@ -19,7 +19,7 @@ const Print = ({ avatar, login, create, repo, setUser, user }) => {
           <p>repositorios</p>
         </div>
 
-        <Button
+        <Button className='del'
           text="delete"
           clickEvent={(e) => {
             console.log('user');
@@ -27,8 +27,6 @@ const Print = ({ avatar, login, create, repo, setUser, user }) => {
              setUser(
                    user.filter((cur) => {
                      const logiName = e.target.parentElement.children[1].innerText.toUpperCase()
-                    console.log(logiName);
-                    console.log(cur.login);
                     return cur.login.toUpperCase() != logiName
                   })
                  );

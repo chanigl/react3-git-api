@@ -10,6 +10,7 @@ function App() {
   const [gitUser, setGitUser] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState([]);
+  const [users, setUsers] = useState();
 
   console.log(user);
 
@@ -47,17 +48,17 @@ function App() {
 
   useEffect(() => {
     console.log("user:", user);
-  }, [user]);
+  }, [users]);
 
   return (
     <>
       <div className="App">
         <Search setGitUser={setGitUser} searchUser={searchUser} />
-        <Button
+        <Button className='search'
           user={user}
           text={"Search"}
-          clickEvent={() => {
-            console.log("Search");
+          clickEvent={(e) => {
+            e.target.parentElement.children[0].value=''
             setSearchUser(gitUser);
           }}
         />
@@ -76,7 +77,6 @@ function App() {
             
             if (e.target.value === "date") { 
               user.sort(sortDate);
-              console.log(user);
             }
             if (e.target.value === "name") {
               user.sort(sortName);
@@ -84,11 +84,8 @@ function App() {
             if (e.target.value === "repo") {
               user.sort(sortRepo);
             }
-           // setSearchUser(" ");
             setUser(user)
-            
-            
-            console.log('uu'+ user);
+            setUsers(JSON.stringify(user))            
           }}
         />
         <div
@@ -109,8 +106,6 @@ function App() {
               login={el.login}
               create={el.created_at}
               repo={el.public_repos}
-             
-             
             />
           ))}
         </div>
